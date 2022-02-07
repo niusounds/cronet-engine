@@ -129,7 +129,7 @@ class CronetEngine(
     }
 }
 
-fun UrlResponseInfo.toHttpResponseData(
+private fun UrlResponseInfo.toHttpResponseData(
     requestTime: GMTDate,
     callContext: CoroutineContext,
     responseBody: ByteArray? = null,

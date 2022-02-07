@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "CronetTest"
-include ':app'
-include ':cronet-engine'
+rootProject.name = "ktor-client-cronet-engine"
+include(":app")
+include(":cronet-engine")

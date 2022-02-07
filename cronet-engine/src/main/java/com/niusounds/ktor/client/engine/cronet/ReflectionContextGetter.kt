@@ -11,7 +11,7 @@ import android.content.Context
  * I strongly recommend to not to rely auto initialization and
  * manually pass [CronetEngine] to HttpClient.
  */
-fun getCurrentApplicationContext(): Context? =
+internal fun getCurrentApplicationContext(): Context? =
     runCatching {
         Class.forName("android.app.ActivityThread")
             .getMethod("currentApplication")
