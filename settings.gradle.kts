@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "CronetTest"
-include ':app'
-include ':cronet-engine'
+include(":app")
+include(":cronet-engine")
