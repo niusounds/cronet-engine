@@ -3,16 +3,15 @@ package com.niusounds.ktor.client.engine.cronet
 import io.ktor.client.engine.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import io.ktor.http.content.*
 import io.ktor.util.*
 import io.ktor.util.date.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.suspendCancellableCoroutine
+import org.chromium.net.*
 import org.chromium.net.CronetEngine
-import org.chromium.net.CronetException
-import org.chromium.net.UrlRequest
-import org.chromium.net.UrlResponseInfo
 import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 import java.util.concurrent.Executors
@@ -114,13 +113,22 @@ class CronetEngine(
             }
         }
 
-        val requestBuilder = cronetEngine.newUrlRequestBuilder(
+        val request = cronetEngine.newUrlRequestBuilder(
             data.url.toString(),
             callback,
             executor,
-        )
+        ).apply {
+            setHttpMethod(data.method.value)
 
-        val request = requestBuilder.build()
+            data.headers.flattenForEach { key, value ->
+                addHeader(key, value)
+            }
+
+            data.body.toUploadDataProvider()?.let {
+                setUploadDataProvider(it, executor)
+            }
+        }.build()
+
         request.start()
 
         continuation.invokeOnCancellation {
@@ -152,3 +160,14 @@ private fun UrlResponseInfo.toHttpResponseData(
         callContext = callContext,
     )
 }
+
+private fun OutgoingContent.toUploadDataProvider(): UploadDataProvider? =
+    when (this) {
+        is OutgoingContent.NoContent -> null
+        is OutgoingContent.ByteArrayContent -> {
+            UploadDataProviders.create(bytes())
+        }
+        is OutgoingContent.ReadChannelContent,
+        is OutgoingContent.WriteChannelContent,
+        is OutgoingContent.ProtocolUpgrade -> error("UnsupportedContentType $this")
+    }
