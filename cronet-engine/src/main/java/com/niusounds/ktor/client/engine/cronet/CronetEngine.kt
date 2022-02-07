@@ -114,13 +114,18 @@ class CronetEngine(
             }
         }
 
-        val requestBuilder = cronetEngine.newUrlRequestBuilder(
+        val request = cronetEngine.newUrlRequestBuilder(
             data.url.toString(),
             callback,
             executor,
-        )
+        ).apply {
+            setHttpMethod(data.method.value)
 
-        val request = requestBuilder.build()
+            data.headers.flattenForEach { key, value ->
+                addHeader(key, value)
+            }
+        }.build()
+
         request.start()
 
         continuation.invokeOnCancellation {
