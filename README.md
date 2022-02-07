@@ -1,4 +1,4 @@
-# ktor-client-cronet-engine
+# cronet-engine
 
 Ktor engine implementation using [Cronet](https://developer.android.com/guide/topics/connectivity/cronet) as backend which enables HTTP/3 with [ktor-client](https://ktor.io/docs/getting-started-ktor-client.html).
 
