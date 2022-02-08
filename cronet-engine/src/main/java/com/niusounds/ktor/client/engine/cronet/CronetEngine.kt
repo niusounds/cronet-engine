@@ -127,6 +127,10 @@ class CronetEngine(
             data.body.toUploadDataProvider()?.let {
                 setUploadDataProvider(it, executor)
             }
+
+            data.body.contentType?.let {
+                addHeader(HttpHeaders.ContentType, it.contentType)
+            }
         }.build()
 
         request.start()
