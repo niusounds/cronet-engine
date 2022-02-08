@@ -39,7 +39,7 @@ android {
 
 dependencies {
     implementation("io.ktor:ktor-client-core:1.6.7")
-    implementation("com.google.android.gms:play-services-cronet:18.0.1")
+    api("com.google.android.gms:play-services-cronet:18.0.1")
 }
 
 afterEvaluate {
