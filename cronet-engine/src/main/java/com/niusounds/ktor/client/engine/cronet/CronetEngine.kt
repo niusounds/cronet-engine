@@ -14,6 +14,7 @@ import org.chromium.net.*
 import org.chromium.net.CronetEngine
 import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
+import java.nio.channels.Channels
 import java.util.concurrent.Executors
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
@@ -54,6 +55,7 @@ class CronetEngine(
 
         // All chunked response is written to this.
         val responseCache = ByteArrayOutputStream()
+        val receiveChannel = Channels.newChannel(responseCache)
 
         val callback = object : UrlRequest.Callback() {
             override fun onRedirectReceived(
@@ -85,9 +87,7 @@ class CronetEngine(
             ) {
                 // Write current received response data to responseCache
                 byteBuffer.flip()
-                val tempByteArray = ByteArray(byteBuffer.remaining())
-                byteBuffer.get(tempByteArray)
-                responseCache.write(tempByteArray)
+                receiveChannel.write(byteBuffer)
 
                 // Reuse previous ByteBuffer to read continuous response
                 byteBuffer.clear()
