@@ -75,7 +75,7 @@ class CronetEngine(
             }
 
             override fun onResponseStarted(request: UrlRequest, info: UrlResponseInfo) {
-                request.read(ByteBuffer.allocateDirect(256))
+                request.read(ByteBuffer.allocateDirect(config.responseBufferSize))
             }
 
             override fun onReadCompleted(

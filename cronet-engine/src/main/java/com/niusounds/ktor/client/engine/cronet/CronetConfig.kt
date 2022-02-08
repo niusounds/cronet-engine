@@ -17,4 +17,5 @@ class CronetConfig : HttpClientEngineConfig() {
     var config: CronetEngine.Builder.() -> Unit = {}
 
     var followRedirects: Boolean = false
+    var responseBufferSize: Int = 102400
 }
