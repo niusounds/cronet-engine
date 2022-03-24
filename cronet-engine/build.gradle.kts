@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.lib)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.dokka)
     id("maven-publish")
-    id("org.jetbrains.dokka")
 }
 
 group = "com.github.niusounds"
@@ -38,8 +38,8 @@ android {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-client-core:1.6.7")
-    api("com.google.android.gms:play-services-cronet:18.0.1")
+    implementation(libs.ktor.core)
+    api(libs.cronet)
 }
 
 afterEvaluate {

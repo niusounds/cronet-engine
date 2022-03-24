@@ -1,0 +1,20 @@
+[versions]
+kotlin = "1.6.10"
+# https://github.com/ktorio/ktor/releases
+ktor = "1.6.8"
+# https://mvnrepository.com/artifact/com.google.android.gms/play-services-cronet?repo=google
+cronet = "18.0.1"
+
+## Build scripts
+agp = "7.2.0-beta04"
+dokka = "1.6.10"
+
+[libraries]
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+cronet = { module = "com.google.android.gms:play-services-cronet", version.ref = "cronet" }
+
+[plugins]
+android-app = { id = "com.android.application", version.ref = "agp" }
+android-lib = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
