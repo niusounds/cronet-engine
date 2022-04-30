@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.niusounds.cronettest.databinding.ActivityMainBinding
 import com.niusounds.ktor.client.engine.cronet.Cronet
 import io.ktor.client.*
-import io.ktor.client.features.*
+import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.launch
@@ -47,9 +47,9 @@ class MainActivity : AppCompatActivity() {
             button.setOnClickListener {
                 lifecycleScope.launch {
                     try {
-                        val res = client.get<HttpResponse>("https://cloudflare-quic.com/")
+                        val res = client.get("https://cloudflare-quic.com/")
                         button.text = "Status ${res.status} Protocol ${res.version}"
-                        Log.d(tag, res.readText())
+                        Log.d(tag, res.bodyAsText())
                     } catch (e: ServerResponseException) {
                         button.text = "Status ${e.response.status} Protocol ${e.response.version}"
                         Log.e(tag, "$e")
