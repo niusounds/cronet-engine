@@ -42,7 +42,7 @@ dependencies {
     implementation(libs.ktor.core)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
 
-    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("com.google.android.material:material:1.5.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
