@@ -1,7 +1,7 @@
 [versions]
 kotlin = "1.7.10"
 # https://github.com/ktorio/ktor/releases
-ktor = "1.6.8"
+ktor = "2.1.0"
 # https://mvnrepository.com/artifact/com.google.android.gms/play-services-cronet?repo=google
 cronet = "18.0.1"
 
