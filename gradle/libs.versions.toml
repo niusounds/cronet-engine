@@ -7,7 +7,7 @@ cronet = "18.0.1"
 
 ## Build scripts
 agp = "7.3.0"
-dokka = "1.7.10"
+dokka = "1.7.20"
 
 [libraries]
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
