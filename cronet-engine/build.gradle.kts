@@ -9,6 +9,7 @@ group = "com.github.niusounds"
 version = "0.1.1"
 
 android {
+    namespace = "com.niusounds.ktor.client.engine.cronet"
     compileSdk = 33
 
     defaultConfig {
