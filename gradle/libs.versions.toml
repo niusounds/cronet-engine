@@ -6,7 +6,7 @@ ktor = "2.3.2"
 cronet = "18.0.1"
 
 ## Build scripts
-agp = "8.0.2"
+agp = "8.1.0"
 dokka = "1.8.20"
 
 [libraries]
