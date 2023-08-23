@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 # https://github.com/ktorio/ktor/releases
 ktor = "2.3.3"
 # https://mvnrepository.com/artifact/com.google.android.gms/play-services-cronet?repo=google
